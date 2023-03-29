@@ -17,10 +17,12 @@ public class base {
             File apkPath = new File(filePath, "APIDemos-debug.apk");
 
             DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-            desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel6ProUpsideDownCake");
-            desiredCapabilities.setCapability(MobileCapabilityType.APP, apkPath.getAbsolutePath());
-
-            driver = new AndroidDriver<AndroidElement>(new URL("http://127.0.0.1:4723/wd/hub"), desiredCapabilities);
+            desiredCapabilities.setCapability("appium:automationName", "uiautomator2");
+            desiredCapabilities.setCapability("appium:platformVersion", "11");
+            desiredCapabilities.setCapability("appium:deviceName", "Nexus 6 API 30 2");
+            desiredCapabilities.setCapability("platformName", "Android");
+            desiredCapabilities.setCapability("appium:app", apkPath.getAbsolutePath());
+            driver = new AndroidDriver<AndroidElement>(new URL("http://127.0.0.1:4723"), desiredCapabilities);
 
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         } catch (Exception e) {
